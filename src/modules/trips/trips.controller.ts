@@ -29,6 +29,7 @@ export class TripsController {
     @Req() req: any,
     @Body() dto: CreateTripDto,
   ) {
+  
     return this.tripsService.createTrip(
       req.user.userId,
       dto,

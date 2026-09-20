@@ -11,12 +11,15 @@ import { Repository } from 'typeorm';
 import { Trip } from './entities/trip.entity';
 import { CreateTripDto } from './dto/create-trip.dto';
 import { UpdateTripDto } from './dto/update-trip.dto';
+import { TripMembersService } from '../trip-members/trip-members.service';
+import { TripMemberRole } from 'src/constant';
 
 @Injectable()
 export class TripsService {
   constructor(
     @InjectRepository(Trip)
     private readonly tripsRepository: Repository<Trip>,
+    private readonly tripMembersService: TripMembersService,
   ) { }
 
   async createTrip(
@@ -33,7 +36,15 @@ export class TripsService {
         description: dto.description ?? null,
       });
 
-    return this.tripsRepository.save(trip);
+    const savedTrip =
+      await this.tripsRepository.save(trip);
+    await this.tripMembersService.addMember(
+      savedTrip.id,
+      userId,
+      TripMemberRole.OWNER,
+    );
+
+    return savedTrip;
   }
   async getMyTrips(userId: string) {
     return this.tripsRepository.find({

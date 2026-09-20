@@ -7,15 +7,16 @@ import { TripPartnerService } from './trip-partner.service';
 
 import { TripsModule } from '../trips/trips.module';
 import { NotificationsModule } from '../notifications/notifications.module';
+import { TripMembersModule } from '../trip-members/trip-members.module';
 
 @Module({
   imports: [
     TypeOrmModule.forFeature([
       TripPartner,
     ]),
-
     TripsModule,
     NotificationsModule,
+    TripMembersModule,
   ],
 
   controllers: [

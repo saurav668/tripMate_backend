@@ -10,6 +10,8 @@ import { UsersModule } from './modules/users/users.module'
 import { TripsModule } from './modules/trips/trips.module';
 import { TripPartner } from './modules/trip-partner/entities/trip-partner.entity';
 import { NotificationsModule } from './modules/notifications/notifications.module';
+import { TripPartnerModule } from './modules/trip-partner/trip-partner.module';
+import { TripMembersModule } from './modules/trip-members/trip-members.module';
 
 @Module({
 
@@ -45,8 +47,9 @@ import { NotificationsModule } from './modules/notifications/notifications.modul
         AuthModule,
         UsersModule,
         TripsModule,
-        TripPartner,
-        NotificationsModule
+        TripPartnerModule,
+        NotificationsModule,
+        TripMembersModule
 
     ]
 

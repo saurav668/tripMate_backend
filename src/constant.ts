@@ -9,3 +9,14 @@ export enum NotificationType {
   REQUEST_ACCEPTED = 'REQUEST_ACCEPTED',
   REQUEST_REJECTED = 'REQUEST_REJECTED',
 }
+
+export enum TripMemberRole {
+  OWNER = 'OWNER',
+  MEMBER = 'MEMBER',
+}
+
+export enum TripMemberStatus {
+  ACTIVE = 'ACTIVE',
+  LEFT = 'LEFT',
+  REMOVED = 'REMOVED',
+}
