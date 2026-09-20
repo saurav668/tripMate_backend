@@ -5,6 +5,7 @@ import { Notification } from './entities/notification.entity';
 import { NotificationsController } from './notifications.controller';
 import { NotificationsService } from './notifications.service';
 import { JwtModule } from '@nestjs/jwt';
+import { NotificationsGateway } from './notifications.gateway';
 
 @Module({
   imports: [
@@ -22,6 +23,7 @@ import { JwtModule } from '@nestjs/jwt';
 
   providers: [
     NotificationsService,
+    NotificationsGateway,
   ],
 
   exports: [
