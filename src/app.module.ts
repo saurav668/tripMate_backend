@@ -12,6 +12,7 @@ import { TripPartner } from './modules/trip-partner/entities/trip-partner.entity
 import { NotificationsModule } from './modules/notifications/notifications.module';
 import { TripPartnerModule } from './modules/trip-partner/trip-partner.module';
 import { TripMembersModule } from './modules/trip-members/trip-members.module';
+import { TripChatModule } from './modules/trip-chat/trip-chat.module';
 
 @Module({
 
@@ -49,7 +50,8 @@ import { TripMembersModule } from './modules/trip-members/trip-members.module';
         TripsModule,
         TripPartnerModule,
         NotificationsModule,
-        TripMembersModule
+        TripMembersModule,
+        TripChatModule
 
     ]
 
