@@ -16,42 +16,54 @@ export class NotificationsService {
   constructor(
     @InjectRepository(Notification)
     private readonly notificationsRepository: Repository<Notification>,
-      private readonly notificationsGateway:
-          NotificationsGateway,
-  ) {}
+    private readonly notificationsGateway:
+      NotificationsGateway,
+  ) { }
 
- async createNotification(data: {
-  userId: string;
-  type: NotificationType;
-  title: string;
-  message: string;
-  referenceId?: string;
-  referenceType?: string;
-}) {
-  const notification =
-    this.notificationsRepository.create({
-      userId: data.userId,
-      type: data.type,
-      title: data.title,
-      message: data.message,
-      referenceId:
-        data.referenceId ?? null,
-      referenceType:
-        data.referenceType ?? null,
-    });
+  async createNotification(data: {
+    userId: string;
+    type: NotificationType;
+    title: string;
+    message: string;
+    referenceId?: string;
+    referenceType?: string;
+  }) {
+    const notification =
+      this.notificationsRepository.create({
+        userId: data.userId,
+        type: data.type,
+        title: data.title,
+        message: data.message,
+        referenceId:
+          data.referenceId ?? null,
+        referenceType:
+          data.referenceType ?? null,
+      });
 
-  const savedNotification =
-    await this.notificationsRepository.save(
-      notification,
+    const savedNotification =
+      await this.notificationsRepository.save(
+        notification,
+      );
+    console.log(
+      'NOTIFICATION SAVED:',
+      savedNotification,
     );
 
-  this.notificationsGateway.sendNotification(
-    data.userId,
-    savedNotification,
-  );
+    console.log(
+      'SENDING NOTIFICATION TO USER:',
+      data.userId,
+    );
 
-  return savedNotification;
-}
+    this.notificationsGateway.sendNotification(
+      data.userId,
+      savedNotification,
+    );
+    console.log(
+      'NOTIFICATION SENT TO GATEWAY',
+    );
+
+    return savedNotification;
+  }
 
   async getUserNotifications(userId: string) {
     return this.notificationsRepository.find({
